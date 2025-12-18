@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two-Factor Authentication</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Khand:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <h2 class="logo">ProfilePro</h2>
+</header>
+
+<div class="login-container">
+  <h1>Two-Factor Authentication</h1>
+
+  <p>A 5-digit verification code was sent to your email.</p>
+
+  <form id="verifyForm">
+    <input
+      type="text"
+      id="otp"
+      placeholder="Enter 5-digit code"
+      maxlength="5"
+      required
+    >
+    <button type="submit">Verify</button>
+  </form>
+</div>
+
+<footer class="footer">
+  <p>© 2025 ProfilePro. All rights reserved. Kevin D / Josue O</p>
+</footer>
+
+<script src="verify.js"></script>
+</body>
+</html>
