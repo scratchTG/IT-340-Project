@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Khand:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <h2 class="logo">ProfilePro</h2>
+  <nav>
+    <a href="friends.html" class="nav-link">Friends</a>
+    <a href="userpage.html" class="nav-link">Profile</a>
+    <a href="index.html" class="nav-link">Logout</a>
+  </nav>
+</header>
+
+<div class="profile-container">
+
+  <h1>Messages</h1>
+
+  <!-- MESSAGE LIST -->
+  <div id="messagesBox"></div>
+
+  <!-- SEND MESSAGE -->
+  <form id="messageForm">
+    <input
+      type="text"
+      id="messageInput"
+      placeholder="Type your message..."
+      required
+    >
+    <button type="submit">Send</button>
+  </form>
+
+</div>
+
+<footer class="footer">
+  <p>© 2025 ProfilePro. All rights reserved. Kevin D / Josue O</p>
+</footer>
+
+<script src="messages.js"></script>
+</body>
+</html>
