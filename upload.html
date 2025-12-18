@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Khand:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <h2 class="logo">ProfilePro</h2>
+  <nav>
+    <a href="userpage.html" class="nav-link">Profile</a>
+    <a href="friends.html" class="nav-link">Friends</a>
+    <a href="index.html" class="nav-link">Logout</a>
+  </nav>
+</header>
+
+<div class="profile-container">
+
+  <h1>Edit Profile</h1>
+
+  <!-- IMPORTANT: multipart/form-data for file upload -->
+  <form id="uploadForm" enctype="multipart/form-data">
+
+    <input type="text" id="name" name="name" placeholder="Full Name" required>
+
+    <input type="number" id="age" name="age" placeholder="Age" required>
+
+    <input type="text" id="job" name="job" placeholder="Job Title" required>
+
+    <!-- Resume Upload -->
+    <label>Upload Resume (PDF/DOC)</label>
+    <input 
+      type="file"
+      id="resume"
+      name="resume"
+      accept=".pdf,.doc,.docx"
+      required
+    >
+
+    <button type="submit">Save Changes</button>
+
+  </form>
+
+  <br>
+  <a href="userpage.html" class="nav-link">← Back to Profile</a>
+
+</div>
+
+<footer class="footer">
+  <p>© 2025 ProfilePro. All rights reserved. Kevin D / Josue O</p>
+</footer>
+
+<script src="upload.js"></script>
+</body>
+</html>
