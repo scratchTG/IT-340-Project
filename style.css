@@ -1,4 +1,4 @@
-/* GENERAL PAGE STYLE */
+===/* GENERAL PAGE STYLE */
 html, body {
   height: 100%;
   margin: 0;
@@ -6,10 +6,15 @@ html, body {
   flex-direction: column;
 }
 
+
+h1, h2 {
+  font-family: 'Black Ops One', cursive;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Khand', sans-serif;
   background: black;
   color: white;
 }
@@ -25,8 +30,8 @@ body {
 }
 
 .logo {
+  font-family: 'Black Ops One', cursive;
   font-size: 26px;
-  font-weight: bold;
   color: #f9d600;
   letter-spacing: 2px;
 }
@@ -96,3 +101,32 @@ body {
 }
 
 
+/* ABOUT PAGE */
+.about-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.about-content {
+  max-width: 800px;
+  background: #111;
+  padding: 40px;
+  border-radius: 12px;
+  border: 2px solid #f9d600;
+  box-shadow: 0 0 20px rgba(249, 214, 0, 0.3);
+}
+
+.about-content h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #dcdcdc;
+  margin-bottom: 15px;
+}
