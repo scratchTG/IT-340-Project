@@ -171,3 +171,28 @@ body {
   margin-top: 10px;
 }
 
+/*FOR MESSAGES*/
+#messagesBox {
+  background: #111;
+  border: 1px solid #f9d600;
+  padding: 15px;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message.me {
+  text-align: right;
+  color: #f9d600;
+}
+
+.message.friend {
+  text-align: left;
+  color: white;
+}
+
