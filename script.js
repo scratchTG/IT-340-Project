@@ -1,29 +1,77 @@
-document.getElementById("loginForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
+// ===== CONFIG =====
+const BACKEND_URL = "http://192.168.235.128:3000";
 
-  const email = document.querySelector("#loginForm input[type='text']").value;
-  const password = document.querySelector("#loginForm input[type='password']").value;
+// =====================
+// LOGIN FORM HANDLER
+// =====================
+const loginForm = document.getElementById("loginForm");
 
-  try {
-    const response = await fetch("http://192.168.235.128:3000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, password })
-    });
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const data = await response.json();
+    const email = loginForm.querySelector("input[type='text']").value;
+    const password = loginForm.querySelector("input[type='password']").value;
 
-    if (response.ok) {
-      alert("Login successful!");
-      window.location.href = "homepage.html";
-    } else {
-      alert(data.message || "Login failed");
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Login successful!");
+        window.location.href = "homepage.html";
+      } else {
+        alert(data.message || "Login failed");
+      }
+
+    } catch (error) {
+      alert("Backend not reachable");
+      console.error("Login error:", error);
     }
+  });
+}
 
-  } catch (error) {
-    alert("Backend not reachable");
-    console.error("Fetch error:", error);
-  }
-});
+// =====================
+// SIGNUP FORM HANDLER
+// =====================
+const signupForm = document.getElementById("signupForm");
+
+if (signupForm) {
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = signupForm.querySelector("input[type='email']").value;
+    const password = signupForm.querySelector("input[type='password']").value;
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Account created successfully! Please log in.");
+        window.location.href = "index.html";
+      } else {
+        alert(data.message || "Signup failed");
+      }
+
+    } catch (error) {
+      alert("Backend not reachable");
+      console.error("Signup error:", error);
+    }
+  });
+}
+
