@@ -1,10 +1,11 @@
-// ===== CONFIG =====
 const BACKEND_URL = "http://192.168.235.128:3000";
 
-// =====================
-// LOGIN FORM HANDLER
-// =====================
+let pendingEmail = "";
+
+// LOGIN
 const loginForm = document.getElementById("loginForm");
+const twoFASection = document.getElementById("twoFASection");
+const twoFAForm = document.getElementById("twoFAForm");
 
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
@@ -14,64 +15,57 @@ if (loginForm) {
     const password = loginForm.querySelector("input[type='password']").value;
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
+      const res = await fetch(${BACKEND_URL}/api/auth/login, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (response.ok) {
-        alert("Login successful!");
+      if (data.requires2FA) {
+        pendingEmail = email;
+        loginForm.style.display = "none";
+        twoFASection.style.display = "block";
+        alert("2FA code sent to your email");
+      } else if (res.ok) {
+        alert("Login successful");
         window.location.href = "homepage.html";
       } else {
-        alert(data.message || "Login failed");
+        alert(data.message);
       }
 
-    } catch (error) {
+    } catch (err) {
       alert("Backend not reachable");
-      console.error("Login error:", error);
     }
   });
 }
 
-// =====================
-// SIGNUP FORM HANDLER
-// =====================
-const signupForm = document.getElementById("signupForm");
-
-if (signupForm) {
-  signupForm.addEventListener("submit", async (e) => {
+// VERIFY 2FA
+if (twoFAForm) {
+  twoFAForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = signupForm.querySelector("input[type='email']").value;
-    const password = signupForm.querySelector("input[type='password']").value;
+    const code = document.getElementById("twoFACode").value;
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/auth/signup`, {
+      const res = await fetch(${BACKEND_URL}/api/auth/verify-2fa, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: pendingEmail, code })
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (response.ok) {
-        alert("Account created successfully! Please log in.");
-        window.location.href = "index.html";
+      if (res.ok) {
+        alert("2FA verified!");
+        window.location.href = "homepage.html";
       } else {
-        alert(data.message || "Signup failed");
+        alert(data.message);
       }
 
-    } catch (error) {
-      alert("Backend not reachable");
-      console.error("Signup error:", error);
+    } catch (err) {
+      alert("2FA verification failed");
     }
   });
 }
-
