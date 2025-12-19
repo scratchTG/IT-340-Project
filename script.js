@@ -40,8 +40,14 @@ if (loginForm) {
 
       // LOGIN SUCCESS (no 2FA)
       if (response.ok) {
-        alert("Login successful!");
-        window.location.href = "userpage.html";
+  // Save login session
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("userEmail", email);
+
+  alert("Login successful!");
+  window.location.href = "userpage.html";
+}
+
       } else {
         alert(data.message || "Login failed");
       }
