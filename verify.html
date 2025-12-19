@@ -3,44 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Friends</title>
+  <title>Two-Factor Authentication</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Khand:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Shared CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="navbar">
   <h2 class="logo">ProfilePro</h2>
-  <nav>
-    <a href="userpage.html" class="nav-link">Profile</a>
-    <a href="friends.html" class="nav-link">Friends</a>
-    <a href="index.html" class="nav-link">Logout</a>
-  </nav>
 </header>
 
-<div class="profile-container">
-  <h1>My Friends</h1>
+<div class="login-container">
+  <h1>Two-Factor Authentication</h1>
 
-  <!-- ADD FRIEND -->
-  <form id="addFriendForm">
-    <input type="email" id="friendEmail" placeholder="Friend's email" required>
-    <button type="submit">Add Friend</button>
+  <p>A 5-digit verification code was sent to your email.</p>
+
+  <form id="verifyForm">
+    <input
+      type="text"
+      id="otp"
+      placeholder="Enter 5-digit code"
+      maxlength="5"
+      required
+    >
+    <button type="submit">Verify</button>
   </form>
-
-  <!-- FRIEND LIST -->
-  <div id="friendsList"></div>
 </div>
 
 <footer class="footer">
   <p>© 2025 ProfilePro. All rights reserved. Kevin D / Josue O</p>
 </footer>
 
-<script src="friends.js"></script>
+<script src="verify.js"></script>
 </body>
 </html>
