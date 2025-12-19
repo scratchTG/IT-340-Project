@@ -28,13 +28,14 @@ if (loginForm) {
       const data = await response.json();
 
       // 2FA REQUIRED
-      if (data.requires2FA) {
-        pendingEmail = email;
-        loginForm.style.display = "none";
-        twoFASection.style.display = "block";
-        alert("2FA code sent to your email");
-        return;
-      }
+if (data.requires2FA) {
+  localStorage.setItem("2faEmail", email);
+
+  alert("2FA code sent to your email");
+  window.location.href = "verify.html";
+  return;
+}
+
 
       // LOGIN SUCCESS (NO 2FA)
       if (response.ok) {
