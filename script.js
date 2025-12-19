@@ -89,20 +89,54 @@ if (twoFAForm) {
 }
 
 // =====================
+<<<<<<< HEAD
 // USER PROFILE PAGE LOAD
+=======
+// LOAD USER PROFILE
+>>>>>>> 2f6b58eb5746e0ba75b3e90e711e666ba909e7b5
 // =====================
 const emailSpan = document.getElementById("userEmail");
+const resumeStatus = document.getElementById("resumeStatus");
 
 if (emailSpan) {
+<<<<<<< HEAD
   const userEmail = localStorage.getItem("userEmail");
 
   if (!userEmail) {
+=======
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+>>>>>>> 2f6b58eb5746e0ba75b3e90e711e666ba909e7b5
     window.location.href = "index.html";
   } else {
-    emailSpan.textContent = userEmail;
+    loadUserProfile();
   }
 }
 
+async function loadUserProfile() {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/user/me`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+
+    if (!res.ok) throw new Error("Unauthorized");
+
+    const user = await res.json();
+
+    emailSpan.textContent = user.email;
+    resumeStatus.textContent = user.resume ? "Uploaded" : "Not uploaded";
+
+  } catch (err) {
+    console.error(err);
+    localStorage.clear();
+    window.location.href = "index.html";
+  }
+}
+
+<<<<<<< HEAD
 // =====================
 // LOGOUT
 // =====================
@@ -111,3 +145,6 @@ document.querySelectorAll("a[href='index.html']").forEach(link => {
     localStorage.clear();
   });
 });
+=======
+
+>>>>>>> 2f6b58eb5746e0ba75b3e90e711e666ba909e7b5
