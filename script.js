@@ -10,6 +10,9 @@ let pendingEmail = "";
 const loginForm = document.getElementById("loginForm");
 const twoFASection = document.getElementById("twoFASection");
 const twoFAForm = document.getElementById("twoFAForm");
+const signupForm = document.getElementById("signupForm");
+
+
 
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
@@ -39,6 +42,10 @@ if (loginForm) {
       }
 
       // LOGIN SUCCESS (no 2FA)
+
+window.location.href = "userpage.html";
+
+
       if (response.ok) {
         alert("Login successful!");
         window.location.href = "userpage.html";
