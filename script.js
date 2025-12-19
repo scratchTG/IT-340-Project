@@ -47,8 +47,14 @@ window.location.href = "userpage.html";
 
 
       if (response.ok) {
-        alert("Login successful!");
-        window.location.href = "userpage.html";
+  // Save login session
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("userEmail", email);
+
+  alert("Login successful!");
+  window.location.href = "userpage.html";
+}
+
       } else {
         alert(data.message || "Login failed");
       }
@@ -96,3 +102,27 @@ if (twoFAForm) {
     }
   });
 }
+
+// =====================
+// USER PROFILE LOAD
+// =====================
+const emailSpan = document.getElementById("userEmail");
+
+if (emailSpan) {
+  const userEmail = localStorage.getItem("userEmail");
+  const token = localStorage.getItem("token");
+
+  if (!token || !userEmail) {
+    // Not logged in → kick out
+    window.location.href = "index.html";
+  } else {
+    emailSpan.textContent = userEmail;
+  }
+}
+
+document.querySelectorAll("a[href='index.html']").forEach(link => {
+  link.addEventListener("click", () => {
+    localStorage.clear();
+  });
+});
+
