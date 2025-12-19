@@ -19,10 +19,16 @@ document.getElementById("verifyForm").addEventListener("submit", async (e) => {
   const data = await res.json();
 
   if (res.ok) {
-    alert("Authentication successful!");
-    localStorage.removeItem("2faEmail");
-    window.location.href = "userpage.html";
-  } else {
+  // ✅ STORE LOGIN SESSION
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("userEmail", email);
+
+  localStorage.removeItem("2faEmail");
+
+  alert("Authentication successful!");
+  window.location.href = "userpage.html";
+}
+else {
     alert(data.message || "Invalid code");
   }
 });
