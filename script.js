@@ -95,3 +95,27 @@ if (twoFAForm) {
     }
   });
 }
+
+// =====================
+// USER PROFILE LOAD
+// =====================
+const emailSpan = document.getElementById("userEmail");
+
+if (emailSpan) {
+  const userEmail = localStorage.getItem("userEmail");
+  const token = localStorage.getItem("token");
+
+  if (!token || !userEmail) {
+    // Not logged in → kick out
+    window.location.href = "index.html";
+  } else {
+    emailSpan.textContent = userEmail;
+  }
+}
+
+document.querySelectorAll("a[href='index.html']").forEach(link => {
+  link.addEventListener("click", () => {
+    localStorage.clear();
+  });
+});
+
