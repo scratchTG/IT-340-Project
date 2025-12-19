@@ -1,118 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>User Profile</title>
-  <style>
-	
-	html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
+  <meta charset="UTF-8">
+  <title>ProfilePro | User Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: black;
-  color: white;
-}
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Khand:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-input {
-  display: block;
-  margin: 10px 0;
-  padding: 8px;
-  width: 100%;
-}
-
-button {
-  padding: 8px;
-  cursor: pointer;
-}
-   
-
-        #contact {
-            max-width: 800px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        p {
-            line-height: 1.6;
-        }
-
-	.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: #111;
-  border-bottom: 2px solid #f9d600; /* futuristic yellow */
-}
-
-.logo {
-  font-size: 26px;
-  font-weight: bold;
-  color: #f9d600;
-  letter-spacing: 2px;
-}
-
-.nav-link {
-  margin-left: 25px;
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  transition: 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #f9d600;
-}
-
-
-.footer {
-  margin-top: auto;   /* pushes footer to the bottom of screen */
-  text-align: center;
-  padding: 15px 0;
-  background: #111;
-  border-top: 2px solid #f9d600;
-}
-	
-    </style>
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <h1>User Profile</h1>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <h2 class="logo">ProfilePro</h2>
+    <nav>
+      <a href="homepage.html" class="nav-link">Home</a>
+      <a href="friends.html" class="nav-link">Friends</a>
+      <a href="userpage.html" class="nav-link">Profile</a>
+      <a href="index.html" class="nav-link">Logout</a>
+    </nav>
+  </header>
 
-  <!-- Display Section -->
-  <div class="profile-display">
-    <p><strong>Name:</strong> <span id="displayName">Not set</span></p>
-    <p><strong>Age:</strong> <span id="displayAge">Not set</span></p>
-    <p><strong>Job:</strong> <span id="displayJob">Not set</span></p>
-  </div>
+  <!-- MAIN CONTENT -->
+  <main class="login-container">
+    <h1>User Profile</h1>
 
-  <!-- Update Form -->
-  <h2>Update Profile</h2>
-  <form id="profileForm">
+    <!-- PROFILE INFO (DISPLAY ONLY FOR NOW) -->
+    <section>
+      <p><strong>Email:</strong> <span id="userEmail">Logged in user</span></p>
+      <p><strong>Resume:</strong> <span id="resumeStatus">Not uploaded</span></p>
+    </section>
 
-    <input type="text" id="name" placeholder="Name" required>
-    <input type="number" id="age" placeholder="Age" required>
-    <input type="text" id="job" placeholder="Job" required>
-    <button type="submit">Save</button>
+    <hr style="margin: 30px 0; border-color: #f9d600;">
 
- </form>
+    <!-- RESUME UPLOAD -->
+    <section>
+      <h2>Upload Your Resume</h2>
 
-  <br>
-  <a href="friends.html">Go to Friends List</a>
+      <form id="resumeForm" enctype="multipart/form-data">
+        <input
+          type="email"
+          id="resumeEmail"
+          placeholder="Confirm your email"
+          required
+        >
 
-  <script src="script.js"></script>
+        <input
+          type="file"
+          id="resumeFile"
+          accept=".pdf,.doc,.docx"
+          required
+        >
+
+        <button type="submit">Upload Resume</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 ProfilePro. All rights reserved. Kevin D / Josue O</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+
 </body>
 </html>
