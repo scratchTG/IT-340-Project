@@ -10,9 +10,6 @@ let pendingEmail = "";
 const loginForm = document.getElementById("loginForm");
 const twoFASection = document.getElementById("twoFASection");
 const twoFAForm = document.getElementById("twoFAForm");
-const signupForm = document.getElementById("signupForm");
-
-
 
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
@@ -24,9 +21,7 @@ if (loginForm) {
     try {
       const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
       });
 
@@ -41,20 +36,11 @@ if (loginForm) {
         return;
       }
 
-      // LOGIN SUCCESS (no 2FA)
-
-window.location.href = "userpage.html";
-
-
+      // LOGIN SUCCESS (NO 2FA)
       if (response.ok) {
-  // Save login session
-  localStorage.setItem("token", data.token);
-  localStorage.setItem("userEmail", email);
-
-  alert("Login successful!");
-  window.location.href = "userpage.html";
-}
-
+        localStorage.setItem("userEmail", email);
+        alert("Login successful!");
+        window.location.href = "userpage.html";
       } else {
         alert(data.message || "Login failed");
       }
@@ -78,9 +64,7 @@ if (twoFAForm) {
     try {
       const response = await fetch(`${BACKEND_URL}/api/auth/verify-2fa`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: pendingEmail,
           code: code
@@ -90,8 +74,9 @@ if (twoFAForm) {
       const data = await response.json();
 
       if (response.ok) {
+        localStorage.setItem("userEmail", pendingEmail);
         alert("2FA verified! Login complete.");
-        window.location.href = "homepage.html";
+        window.location.href = "userpage.html";
       } else {
         alert(data.message || "Invalid 2FA code");
       }
@@ -104,25 +89,25 @@ if (twoFAForm) {
 }
 
 // =====================
-// USER PROFILE LOAD
+// USER PROFILE PAGE LOAD
 // =====================
 const emailSpan = document.getElementById("userEmail");
 
 if (emailSpan) {
   const userEmail = localStorage.getItem("userEmail");
-  const token = localStorage.getItem("token");
 
-  if (!token || !userEmail) {
-    // Not logged in → kick out
+  if (!userEmail) {
     window.location.href = "index.html";
   } else {
     emailSpan.textContent = userEmail;
   }
 }
 
+// =====================
+// LOGOUT
+// =====================
 document.querySelectorAll("a[href='index.html']").forEach(link => {
   link.addEventListener("click", () => {
     localStorage.clear();
   });
 });
-
