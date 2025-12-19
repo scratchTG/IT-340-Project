@@ -104,25 +104,41 @@ if (twoFAForm) {
 }
 
 // =====================
-// USER PROFILE LOAD
+// LOAD USER PROFILE
 // =====================
 const emailSpan = document.getElementById("userEmail");
+const resumeStatus = document.getElementById("resumeStatus");
 
 if (emailSpan) {
-  const userEmail = localStorage.getItem("userEmail");
   const token = localStorage.getItem("token");
 
-  if (!token || !userEmail) {
-    // Not logged in → kick out
+  if (!token) {
     window.location.href = "index.html";
   } else {
-    emailSpan.textContent = userEmail;
+    loadUserProfile();
   }
 }
 
-document.querySelectorAll("a[href='index.html']").forEach(link => {
-  link.addEventListener("click", () => {
+async function loadUserProfile() {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/user/me`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+
+    if (!res.ok) throw new Error("Unauthorized");
+
+    const user = await res.json();
+
+    emailSpan.textContent = user.email;
+    resumeStatus.textContent = user.resume ? "Uploaded" : "Not uploaded";
+
+  } catch (err) {
+    console.error(err);
     localStorage.clear();
-  });
-});
+    window.location.href = "index.html";
+  }
+}
+
 
