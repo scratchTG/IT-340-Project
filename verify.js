@@ -13,7 +13,8 @@ document.getElementById("verifyForm").addEventListener("submit", async (e) => {
   const res = await fetch("http://localhost:3000/api/auth/verify-2fa", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, otp })
+    body: JSON.stringify({ email, code: otp })
+
   });
 
   const data = await res.json();
